@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class OrbCatch : MonoBehaviour
+{
+    public AudioSource orbCatchFX;
+
+    void OnTriggerEnter(Collider other)
+    {
+        orbCatchFX.Play();
+        if (other.tag == "RedOrb")
+        {
+            ScoreUpdater.orbScore += 1;
+        }
+        if (other.tag == "BlueOrb")
+        {
+            ScoreUpdater.orbScore += 2;
+        }
+        if (other.tag == "GreenOrb")
+        {
+            ScoreUpdater.orbScore += 3;
+        }
+        ScoreUpdater.orbCount += 1;
+        other.gameObject.SetActive(false);
+    }
+}
